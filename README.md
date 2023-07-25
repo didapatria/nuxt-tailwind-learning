@@ -1,7 +1,9 @@
 # Nuxt.js TailwindCSS - Learning
+
 🚀 Dive into the world of ♻️ Nuxt.js and 🌀 Tailwind CSS! Learn to build stunning web apps with step-by-step tutorials, examples, and tips. Let's level up your web development skills! Let's create magic! ✨ #webdevelopment #javascript #vuejs #nuxtjs #tailwindcss
 
 ## Description:
+
 This GitHub repository is dedicated to learning Nuxt.js and Tailwind CSS, two powerful tools for building modern, performant, and responsive web applications. The repository contains various projects, examples, and tutorials to help you grasp the fundamentals and advanced concepts of both Nuxt.js and Tailwind CSS.
 
 Whether you are a beginner looking to understand the basics or an experienced developer seeking to enhance your skills, this repository provides a structured learning path, comprehensive documentation, and hands-on projects to cater to all skill levels. The combination of Nuxt.js and Tailwind CSS offers an excellent development experience, and you'll find everything you need to get started and create stunning web applications.
@@ -21,8 +23,7 @@ Whether you are a beginner looking to understand the basics or an experienced de
     <li>
       <a href="#installation-and-setup-instructions">Installation and Setup Instructions</a>
       <ul>
-        <li><a href="#create-your-project-with-yarn">Create your project with yarn</a></li>
-        <li><a href="#install-nuxtjs-dependencies-and-tensorflow">Install Nuxt.js Dependencies and TensorFlow</a></li>
+        <li><a href="#create-your-project">Create your project with yarn</a></li>
         <li><a href="#install-tailwind-css-with-prettier-plugin">Install Tailwind CSS with Prettier plugin</a></li>
         <li><a href="#add-tailwind-to-your-postcss-configuration">Add Tailwind to your PostCSS configuration</a></li>
         <li><a href="#configure-your-template-paths">Configure your template paths</a></li>
@@ -40,33 +41,24 @@ Whether you are a beginner looking to understand the basics or an experienced de
 
 Install Tailwind CSS with Nuxt.js and Setting up Tailwind CSS in a Nuxt.js project.
 
-### Create a new react project with yarn
+### Create a new react project
 
-Start by creating a new Nuxt.js project if you don’t have one set up already. The most common approach is to use [**__Create Nuxt App__**](https://v2.nuxt.com/docs/get-started/installation/).
+Start by creating a new Nuxt.js project if you don’t have one set up already. The most common approach is to use the [**Nuxt Command Line Interface**](https://nuxt.com/docs/getting-started/installation).
 
 ```bash
 # Create New Project
-$ yarn create nuxt-app nuxt-tailwind-learning
+$ npx nuxi@latest init nuxt-tailwind-learning
 
 # To start the development server, navigate into the project directory
 $ cd nuxt-tailwind-learning
 ```
 
-### Install Nuxt.js Dependencies and TensorFlow
-
-Install nuxt dependencies and tensorflow with yarn
-
-```bash
-# Install dependencies
-$ yarn add nuxt axios @nuxtjs/eslint-module @nuxtjs/dotenvv @nuxt/image
-```
-
-### Install Tailwind CSS with Prettier plugin
+### Install Tailwind CSS
 
 Install `tailwindcss` and its peer dependencies via yarn, and then run the init command to generate a `tailwind.config.js` file.
 
 ```bash
-$ yarn add -D tailwindcss prettier prettier-plugin-tailwindcss postcss autoprefixer
+$ yarn add -D tailwindcss postcss autoprefixer
 $ yarn tailwindcss init -p
 ```
 
@@ -75,18 +67,15 @@ $ yarn tailwindcss init -p
 Add `tailwindcss` and `autoprefixer` to the `build.postcss.plugins` object in your `nuxt.config.js` file.
 
 ```js
-export default {
-  build: {
-    postcss: {
-      postcssOptions: {
-        plugins: {
-          tailwindcss: {},
-          autoprefixer: {},
-        },
-      },
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
     },
-  }
-}
+  },
+});
 ```
 
 ### Configure your template paths
@@ -102,12 +91,13 @@ module.exports = {
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
+    "./app.vue",
   ],
   theme: {
     extend: {},
   },
   plugins: [],
-}
+};
 ```
 
 ### Add the Tailwind directives to your CSS
@@ -121,14 +111,20 @@ Create an `./assets/css/main.css` file and add the `@tailwind` directives for ea
 ```
 
 ### Import the CSS file
+
 Add the newly-created `./assets/css/main.css` file to the `css` array in the `nuxt.config.js` file.
 
 ```js
-export default {
-  css: [
-    '@/assets/css/main.css',
-  ],
-}
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  css: ["~/assets/css/main.css"],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
+});
 ```
 
 ### Start your build process
