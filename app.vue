@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen bg-gray-100">
-    <div class="m-auto w-1/3">
+    <div class="m-auto w-11/12 md:w-1/3">
       <div class="mb-6">
         <img
           src="./assets/images/logo-fh-removebg-preview-1.png"
